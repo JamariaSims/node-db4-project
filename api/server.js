@@ -1,9 +1,10 @@
 const express = require("express");
+const { logger } = require("./recipe_middleware");
 const recipeRouter = require("./recipe_router");
 const server = express();
 
 server.use(express.json());
-server.use("/api/recipe", recipeRouter);
+server.use("/api/recipe", logger, recipeRouter);
 server.use("/", (req, res) => {
   res.send(`<h1>Hey! I love code but hate this =)</h1>
   `);
